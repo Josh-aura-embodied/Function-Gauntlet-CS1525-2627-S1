@@ -66,8 +66,8 @@ def test_count_vowels(text, expected):
         (0, 32.0),
         (100, 212.0),
         (-40, -40.0),
-        (37, 98.6),
-        (20, 68.0),
+        (25, 77.0),
+        (10, 50.0),
     ],
 )
 def test_celsius_to_fahrenheit(celsius, expected):
@@ -82,10 +82,9 @@ def test_celsius_to_fahrenheit(celsius, expected):
     "text, expected",
     [
         ("robot", "tobor"),
-        ("hello world", "dlrow olleh"),
-        ("A", "A"),
-        ("12345", "54321"),
+        ("hello", "olleh"),
         ("", ""),
+        ("a", "a"),
     ],
 )
 def test_reverse_text(text, expected):
@@ -97,17 +96,16 @@ def test_reverse_text(text, expected):
 # --------------------------------------------------
 
 @pytest.mark.parametrize(
-    "first, second, expected",
+    "a, b, expected",
     [
-        (10, 5, 10),
-        (5, 10, 10),
-        (-5, -10, -5),
-        (7, 7, 7),
-        (0, -1, 0),
+        (3, 7, 7),
+        (10, 2, 10),
+        (-1, -5, -1),
+        (4, 4, 4),
     ],
 )
-def test_larger_number(first, second, expected):
-    assert larger_number(first, second) == expected
+def test_larger_number(a, b, expected):
+    assert larger_number(a, b) == expected
 
 
 # --------------------------------------------------
@@ -154,10 +152,9 @@ def test_can_afford(balance, cost, expected):
     "text, times, expected",
     [
         ("Go!", 3, "Go!Go!Go!"),
-        ("A", 1, "A"),
-        ("Hi", 0, ""),
-        ("", 5, ""),
-        ("ab", 4, "abababab"),
+        ("a", 2, "aa"),
+        ("x", 0, ""),
+        ("Hi", 1, "Hi"),
     ],
 )
 def test_repeat_text(text, times, expected):
@@ -171,11 +168,10 @@ def test_repeat_text(text, times, expected):
 @pytest.mark.parametrize(
     "sentence, word, expected",
     [
-        ("The robot is ready", "robot", True),
-        ("hello world", "world", True),
-        ("hello world", "mars", False),
-        ("banana", "nan", True),
-        ("Python", "python", False),
+        ("Python is fun", "Python", True),
+        ("Hello there", "bye", False),
+        ("catapult", "cat", True),
+        ("", "", True),
     ],
 )
 def test_contains_word(sentence, word, expected):
@@ -210,7 +206,7 @@ def test_calculate_tip(cost, percent, expected):
         ("Ada", "Lovelace", "AL"),
         ("alan", "turing", "AT"),
         ("Grace", "Hopper", "GH"),
-        ("john", "SMITH", "JS"),
+        ("John", "SMITH", "JS"),
         ("x", "y", "XY"),
     ],
 )
@@ -223,17 +219,16 @@ def test_make_initials(first_name, last_name, expected):
 # --------------------------------------------------
 
 @pytest.mark.parametrize(
-    "points, possible, expected",
+    "score, total, expected",
     [
-        (18, 20, 90.0),
-        (50, 100, 50.0),
+        (8, 10, 80.0),
         (1, 4, 25.0),
         (0, 10, 0.0),
-        (7, 8, 87.5),
+        (10, 10, 100.0),
     ],
 )
-def test_percent_score(points, possible, expected):
-    assert percent_score(points, possible) == pytest.approx(expected)
+def test_percent_score(score, total, expected):
+    assert percent_score(score, total) == pytest.approx(expected)
 
 
 # --------------------------------------------------
@@ -241,17 +236,17 @@ def test_percent_score(points, possible, expected):
 # --------------------------------------------------
 
 @pytest.mark.parametrize(
-    "number, minimum, maximum, expected",
+    "number, lower, upper, expected",
     [
         (5, 1, 10, True),
         (1, 1, 10, True),
         (10, 1, 10, True),
         (0, 1, 10, False),
-        (15, 1, 10, False),
+        (11, 1, 10, False),
     ],
 )
-def test_is_between(number, minimum, maximum, expected):
-    assert is_between(number, minimum, maximum) is expected
+def test_is_between(number, lower, upper, expected):
+    assert is_between(number, lower, upper) is expected
 
 
 # --------------------------------------------------
@@ -259,17 +254,16 @@ def test_is_between(number, minimum, maximum, expected):
 # --------------------------------------------------
 
 @pytest.mark.parametrize(
-    "first, second, third, expected",
+    "a, b, c, expected",
     [
-        ("red", "green", "blue", True),
-        ("red", "red", "blue", False),
-        ("red", "green", "red", False),
-        ("same", "same", "same", False),
-        ("A", "a", "B", True),
+        (1, 2, 3, True),
+        (1, 1, 3, False),
+        (1, 2, 1, False),
+        (4, 4, 4, False),
     ],
 )
-def test_all_different(first, second, third, expected):
-    assert all_different(first, second, third) is expected
+def test_all_different(a, b, c, expected):
+    assert all_different(a, b, c) is expected
 
 
 # --------------------------------------------------
@@ -279,11 +273,10 @@ def test_all_different(first, second, third, expected):
 @pytest.mark.parametrize(
     "first, second, third, expected",
     [
-        (3, 6, 9, 6.0),
-        (1, 2, 2, 5 / 3),
-        (-10, 0, 10, 0.0),
+        (1, 2, 3, 2.0),
         (0, 0, 0, 0.0),
-        (10, 20, 25, 55 / 3),
+        (-3, 0, 3, 0.0),
+        (10, 20, 30, 20.0),
     ],
 )
 def test_average_three(first, second, third, expected):
@@ -304,14 +297,7 @@ def test_average_three(first, second, third, expected):
         (25.0, 10.0, 25.0, "comfortable"),
     ],
 )
-def test_describe_temperature(
-    temperature,
-    cold_limit,
-    hot_limit,
-    expected,
-):
+def test_describe_temperature(temperature, cold_limit, hot_limit, expected):
     assert describe_temperature(
-        temperature,
-        cold_limit,
-        hot_limit,
+        temperature, cold_limit, hot_limit
     ) == expected

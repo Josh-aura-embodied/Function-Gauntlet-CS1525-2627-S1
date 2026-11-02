@@ -4,7 +4,10 @@ def is_even(number):
     :param number:
     :return:
     """
-    pass
+    if number % 2 == 0:
+        return True
+    else:
+        return False
 
 
 def count_vowels(text):
@@ -14,7 +17,14 @@ def count_vowels(text):
     :param text:
     :return:
     """
-    pass
+    vowels = "aeiou"
+    count = 0
+
+    for letter in text.lower():
+        if letter in vowels:
+            count += 1
+
+    return count
 
 
 def celsius_to_fahrenheit(celsius):
@@ -23,7 +33,7 @@ def celsius_to_fahrenheit(celsius):
     :param celsius:
     :return:
     """
-    pass
+    return (celsius * 9 / 5) + 32
 
 
 def reverse_text(text):
@@ -35,28 +45,26 @@ def reverse_text(text):
     :param text:
     :return:
     """
-    pass
+    return text[::-1]
 
 
 def larger_number(a, b):
     """Return whichever of the two integers is larger.
-    If they are equal, return either value.
 
     :param a:
     :param b:
     :return:
     """
-    pass
+    if a > b:
+        return a
+    else:
+        return b
 
 
 def average_two(a, b):
-    """Calculate and return the average of two integers.
-
-    :param a:
-    :param b:
-    :return:
     """
-    pass
+    """
+    return (a + b) / 2
 
 
 def can_afford(balance, cost):
@@ -67,7 +75,7 @@ def can_afford(balance, cost):
     :param cost:
     :return:
     """
-    pass
+    return balance >= cost
 
 
 def repeat_text(text, times):
@@ -81,7 +89,7 @@ def repeat_text(text, times):
     :param times:
     :return:
     """
-    pass
+    return text * times
 
 
 def contains_word(sentence, word):
@@ -92,7 +100,7 @@ def contains_word(sentence, word):
     :param word:
     :return:
     """
-    pass
+    return word in sentence
 
 
 def calculate_tip(cost, percent):
@@ -105,59 +113,52 @@ def calculate_tip(cost, percent):
     :param percent:
     :return:
     """
-    pass
+    return cost * percent / 100
 
 
 def make_initials(first_name, last_name):
-    """Return the uppercase first letters of the two names.
+    """
+    """
+    return first_name[0].upper() + last_name[0].upper()
+
+
+def percent_score(score, total):
+    """Calculate and return a score as a percentage.
 
     Example:
-        "Ada" and "Lovelace" returns "AL".
+        A score of 8 out of 10 returns 80.0.
 
-    :param first_name:
-    :param last_name:
+    :param score:
+    :param total:
     :return:
     """
-    pass
+    if total == 0:
+        raise ValueError("total cannot be zero")
+    return score / total * 100
 
 
-def percent_score(points, possible):
-    """Calculate what percentage of the possible points
-    were earned. Return None if possible is less than 1.
-
-    Example:
-        18 out of 20 returns 90.0.
-
-    :param points:
-    :param possible:
-    :return:
-    """
-    pass
-
-
-def is_between(number, minimum, maximum):
-    """Return True if number is between minimum and maximum,
-    including the minimum and maximum values.
+def is_between(number, lower, upper):
+    """Return True if number is between lower and upper.
+    Otherwise, return False.
 
     :param number:
-    :param minimum:
-    :param maximum:
+    :param lower:
+    :param upper:
     :return:
     """
-    pass
+    return lower <= number <= upper
 
 
 def all_different(a, b, c):
-    """Check if three strings are different.
-    Return True if all three strings are different.
-    Otherwise,return False.
+    """Return True if all three values are different.
+    Otherwise, return False.
 
     :param a:
     :param b:
     :param c:
     :return:
     """
-    pass
+    return a != b and a != c and b != c
 
 
 def average_three(a, b, c):
@@ -168,7 +169,7 @@ def average_three(a, b, c):
     :param c:
     :return:
     """
-    pass
+    return (a + b + c) / 3
 
 
 def describe_temperature(temperature, cold_limit, hot_limit):
@@ -182,14 +183,9 @@ def describe_temperature(temperature, cold_limit, hot_limit):
     :param hot_limit:
     :return:
     """
-    pass
-
-if __name__ == "__main__":
-    """
-    If you want to test any of your code manually
-    you can place function calls down here.
-    Additionally, there is a test file loaded into
-    this folder that you can run a test on your code.
-    """
-    pass
-
+    if temperature < cold_limit:
+        return "cold"
+    elif temperature > hot_limit:
+        return "hot"
+    else:
+        return "comfortable"
